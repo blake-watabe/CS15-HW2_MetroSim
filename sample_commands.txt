@@ -1,0 +1,12 @@
+p 1 2
+p 2 3
+m m
+p 4 7
+p 4 8
+m m
+m m
+m m
+m m
+m m
+m m
+m m

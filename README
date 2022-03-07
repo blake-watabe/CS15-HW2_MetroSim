@@ -1,0 +1,113 @@
+/**********************************************************
+* HW2: Metro Simulator
+* Comp 15
+* README
+*
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+
+This homework assignment simulates a running train to accommodate
+passengers arriving/departing a metro.  Learn how to design and
+modularize code and work with documented libraries.
+
+
+Acknowledgements: 
+-Comp 15 TA's
+-Ellis Brown's file IO video
+-https://www.mygreatlearning.com/blog/vectors-in-c/ for vector functions
+
+Files: 
+
+main.cpp:
+     My main file was a simple file that checked the number of arguments,
+     and then either returned an error and exited the program, or created
+     a Metro Sim instance and called the run functions.
+
+MetroSim.cpp:
+     The functionality of my MetroSim class encapsulated most of the simulation.
+     My function 
+
+MetroSim.h:
+     Held two main vectors: a train vector and a stations vectors. The train
+     was represented as vector of passenger queues, and the stations were
+     represented as a vector of Stations, with the station being a struct
+     that held the name of the station, the station number, and a passenger 
+     queue. The metro sim had multiple functions that were implemented in a 
+     greater run function, most notably the functions to read in a list of
+     stations, a function to read in a commands file, and a function to move
+     the train (whose position was represented as an index). There was also
+     a command loop function that was used to allow user inputs instead of a
+     command file. For the functionality of the simulation, there were important
+     functions such as a function to add passengers to the station from a file,
+     a function to remove the passenger from a station, a function to add a 
+     passenger to the train, and a function to remove a passenger from the
+     train. Most of these functions were placed within a greater read file
+     file function or the run function. Some private member variables were used
+     to keep track of indices such as the number of stations and the number of
+     passengers that could be unique to each simulation.
+     
+
+stations.txt:
+     an example file containing a list of stations.
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+
+the_metroSim:
+     reference implementation for students to see how the program should run
+
+
+Note:  the program should handle all cases.
+
+Data Structures:
+Vectors were used in place of array lists because the standard vector C++
+library handles most of the functions I would need and would therefore not need
+to worry about debugging. However, the functionality was the exact same as
+the previous assignment's array lists. Vectors were very useful for accessing
+elements of an index, and for removing elements from the start and adding to 
+the back.
+
+Queues were the main data structure implemented in this assignment using
+vectors. Queues, while very simplistic, are practical and can be relied upon
+to perform the simple function of moving data around in a First in, First out
+order. Queues were implemented to represent a list of passengers, and Vectors
+of Queues were used to represent the stations and the train.
+
+Testing:
+
+Testing was very rigorous in each step. Most of my testing was done using unit
+testing. To start, I tested my Passenger print function to make sure that the
+output matched that of the spec's. I also tested the constructors and printed
+the output to cout. The next step was to test my passenger queue functions. In
+this step, I conducted a number of unit tests to make sure that my 5 main
+functions ran: the size function, the front function, the enqueue and dequeue
+functions, and the print passenger queue function. Some edge cases were tested
+as well, such as calling front on an empty vector or dequeueing from one.
+For testing my metro sim functions, I often tested in steps that were later
+implemented into one big test function. I started by testing the MetroSim
+constructor, and then the print function. As I wrote my read stations function,
+I tested the print stations function by reading in the stations.txt file. This
+step took quite a while. I also tested with a shortened version of the stations
+file to make sure it handled separate station sizes. Next I tested my add
+passenger to train function by just testing the "p" command. I created multiple
+test text files to make sure this worked. Lastly, I tested my commands files
+function by reading in the list of commands and having it print to the output
+file. The function to test the cin command line was done by created the
+executable in main. A lot of the unit testing for the MetroSim was done in
+a non-linear order, and the resulting test functions are the product of many,
+many steps. Lastly, I diffed my output files to that of the test sim's.
+
+Part that you found most difficult:
+Anything revolving around reading in files, it was not intuitive. I had to try
+multiple methods of reading in command line and extracting each letter/number.
+It was also very complicated accessing elements of the passenger queue within
+the layers of a passenger queue vector. Overall, I probably put in 25-30 hours
+of work.
